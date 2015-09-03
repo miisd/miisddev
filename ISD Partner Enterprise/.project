@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>ISD Partner Enterprise</name>
@@ -21,3 +22,22 @@
 		<nature>com.salesforce.ide.nature.online</nature>
 	</natures>
 </projectDescription>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>ISD Partner Enterprise</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.salesforce.ide.builder.default</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.salesforce.ide.nature.default</nature>
+	</natures>
+</projectDescription>
+>>>>>>> branch 'master' of https://github.com/miisd/miisddev.git
