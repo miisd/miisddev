@@ -1,11 +1,1 @@
 <apex:page action="{!URLFOR('/answers/answersHome.apexp')}"/>
-Test
-@Rameez2
-Test
-@Rameez3
-@Rameez4
-@Rameez5
-Test
-@Rameez6
-@Rameez7
-Test
