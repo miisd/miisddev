@@ -1,0 +1,115 @@
+<apex:page docType="html-5.0" standardStylesheets="false" sidebar="false" showheader="false" controller="CommunitiesLoginController">
+
+    <script type='text/javascript' src='https://c.la3-c1-was.salesforceliveagent.com/content/g/js/33.0/deployment.js'></script>
+<script type='text/javascript'>
+liveagent.init('https://d.la3-c1-was.salesforceliveagent.com/chat', '572o0000000CgEh', '00Do0000000Zuqt');
+</script>
+
+    <style type="text/css">
+    .messageCount{
+    background-color: black;
+    border-radius: 32px;
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 20px;
+    font-style: normal;
+    margin-right: 5px;
+    margin-top: -3px;
+    padding: 4px;
+    text-align: center;
+    width: 20px;
+    }
+    
+    .box{
+    margin-left: 70px;
+    width: 70%;
+    padding-left: 20px;
+    }
+    
+    .relQues {
+        display: none;
+    }
+    </style>
+    
+   <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="height:100%;width:50%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+        <div class="row">
+
+      <div class="col-sm-6">
+           <i class="messageCount">?</i>
+       
+      </div>       
+          
+        
+      
+      <div class="col-sm-6">
+          <div class="form-group">
+                 <input type="text" class="form-control box" placeholder="Search Help Centre"/>
+           </div>
+       </div>
+          </div>                 
+      </div>
+      
+       
+      
+      <div class="modal-body" >
+        <h4>I need help with...</h4>
+        <select class="form-control" style="height:800px;width:100%">
+                                    <option value="Actions">Having a baby life event</option>
+                                    <option value="Actions">two</option>
+                                    <option value="Actions">three</option>
+                                    <option value="Actions">four</option>
+                                </select>   
+                                <div style="position: relative; overflow: hidden;" class="p10 w100p">     
+                          <section style="position: relative; overflow: hidden; float: left; width: 54%; margin-right: 1%;">  
+                          <b>Need help now?</b>  
+                          <p>Chat now with one of our HHS Representative</p>
+                         
+                            <script type="text/javascript">
+                            if (!window._laq) { window._laq = []; }
+                            window._laq.push(function(){liveagent.showWhenOnline('573o0000000CgsP', document.getElementById('liveagent_button_online_573o0000000CgsP'));
+                            liveagent.showWhenOffline('573o0000000CgsP', document.getElementById('liveagent_button_offline_573o0000000CgsP'));
+                            });</script>
+                     
+                           <div style="height:100%;width:100%">
+                           <button class="btn btn-success" style="font-family: arial; color: #f2f2f2; border-radius:6px;" type="submit" onclick="liveagent.startChat('573o0000000CgsP')">Start Live Chat</button>
+                           </div>
+                            <b>No Time to Chat?</b>
+                            <p>Drop us a message and we'll get back to you shortly.</p>
+                           <div style="width:100%">
+                           <button class="btn btn-success" style="font-family: arial; color: #f2f2f2; border-radius:6px;" type="submit">Leave a message</button>
+                           </div>  
+                           <b>Prefer to Call?</b>  
+                           <p>Pick up and the phone and dail the number below to speak directly to a HS Representative</p>
+                          <ul>
+                              <li><b>303-952-2681</b> (Outside of Colorado)</li>
+                              <li><b>1-888-876-1633</b> (Toll Free within Colorado)</li>                           
+                           </ul>
+                          
+                           </section>
+                            <section style="position: relative; overflow: hidden; float: left; width: 45%;">
+                            <div class="relQues">
+                         <b>Related question</b>
+                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra</p>
+                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra</p>
+                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra</p>
+                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra</p>
+                         </div>
+                         </section>
+
+                           </div>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+</apex:page>

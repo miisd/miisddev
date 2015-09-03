@@ -1,0 +1,471 @@
+<apex:page docType="html-5.0" standardStylesheets="false" sidebar="false" showheader="false" controller="CP_SetupMyVaultController">
+<style>
+   input, textarea, .uneditable-input {
+    width: 206px;
+}
+</style>
+    <div class="modal fade" id="vaultModal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+    <apex:form >
+      <!--<apex:outputPanel rendered="{!page1}">-->
+         <apex:pageBlock >
+            <!--Custom Label-->
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h1 class="modal-title">Add Details to MyVault</h1>
+        <p class="subText">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. 
+          <span class="helpText">Cum sociis natoque penatibus et magnis dis parturient montes</span>
+        </p>
+      </div>
+      <div class="modal-body">     
+        <span class="span6 pull-left m-t-10">
+        <apex:image url="{!$Resource.CP_WorkflowPreview1to4}" width="500" height="65"/> 
+        </span>         
+        <span class="well span2 pull-left m-t-10 m-b-0">TIME TO COMPLETE<br/><br/><span class="lg-font">5 - 7</span> <sub>minutes</sub></span>           
+        <div class="span9">         
+        <h3>Benefits</h3>
+         <apex:image url="{!$Resource.CP_Star}" style="vertical-align:middle"/>Descriptive Benefit Label #1<br/><br/>
+
+         <apex:image url="{!$Resource.CP_Star}" style="vertical-align:middle"/>Descriptive Benefit Label #2<br/><br/>
+
+         <apex:image url="{!$Resource.CP_Star}" style="vertical-align:middle"/>Descriptive Benefit Label #3<br/><br/>
+
+         <apex:image url="{!$Resource.CP_Star}" style="vertical-align:middle"/>Descriptive Benefit Label #4<br/><br/>
+      </div>
+            </div>
+      <div class="modal-footer">
+         <input type="button" value="Setup My Vault" data-dismiss="modal" data-toggle="modal" data-target="#vaultModal_7" class="btn btn-success"/>
+         <apex:commandLink value="I will setup MyVault later." action="{!page8display}"/>
+      </div>
+         </apex:pageBlock>
+      <!--</apex:outputPanel>-->
+   </apex:form>
+      </div>
+      </div>
+      </div>
+       <div class="modal fade" id="vaultModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+   <apex:form >
+      <!--<apex:outputPanel rendered="{!page2}">-->
+         <apex:pageBlock >
+                <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h1 class="modal-title">Help us get to know you</h1>
+            <ol data-progtrckr-steps="5" class="progtrckr">
+                <li class="progtrckr-done">Step 1</li><li class="progtrckr-todo">Step 2</li><li class="progtrckr-todo">Step 3</li><li class="progtrckr-todo">Step 4</li><li class="progtrckr-todo">Done</li>
+            </ol>
+      </div>
+      <div class="modal-body">
+
+         <h3>Step 1 - Tell us about yourself.</h3>
+         <div class="span8 pull-left">
+            <div class="form-group">
+               <apex:outputlabel styleClass="myLabel myLabelBorn">Where were you born?</apex:outputlabel>
+               <apex:inputField value="{!conObj.Birthdate}"/>
+            </div>
+         </div>
+         <div class="span8 pull-left">
+            <div class="form-group">
+               <apex:outputlabel styleClass="myLabel myLabelCitizen">What is your citizenship status?</apex:outputlabel>
+               <apex:inputField value="{!conObj.Citizenship_Status__c}"/>               
+            </div>
+         </div>
+         <div class="span8 pull-left">
+            <div class="form-group">
+               <apex:outputlabel styleClass="myLabel" >When did you arrive in Canada?</apex:outputlabel>
+               <apex:inputField value="{!conObj.Arrival_Date__c}"/>               
+            </div>
+         </div>
+         <div class="span8 pull-left">
+            <div class="form-group">
+               <apex:outputlabel >What is your ethnicity?</apex:outputlabel>
+               <apex:inputField styleClass="mySelect" value="{!conObj.Ethnicity__c}"/>               
+            </div>
+         </div>
+      </div>
+      <div class="modal-footer">
+         <input type="button" value="Move to Step 2 >>" data-dismiss="modal" data-toggle="modal" data-target="#vaultModal_3" class="btn btn-success"/>
+         <a data-toggle="modal" data-target="#vaultModal_7"> I need to go back"</a>
+      </div>
+         </apex:pageBlock>
+      <!--</apex:outputPanel>-->
+   </apex:form>
+   </div>
+      </div>
+      </div>
+       <div class="modal fade" id="vaultModal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+   <apex:form >
+      <!--<apex:outputPanel rendered="{!page3}">-->
+         <apex:pageBlock >
+                <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h1 class="modal-title">Help us get to know you</h1>        
+            <ol data-progtrckr-steps="5" class="progtrckr">
+                <li class="progtrckr-done">Step 1</li><li class="progtrckr-done">Step 2</li><li class="progtrckr-todo">Step 3</li><li class="progtrckr-todo">Step 4</li><li class="progtrckr-todo">Done</li>
+            </ol>
+      </div>
+      <div class="modal-body">
+
+         <h3>Step 2 - Tell us about your household.</h3>
+         <div class="span8 pull-left">
+            <div class="form-group">
+               <apex:outputlabel styleClass="myLabel">How many total people are in your household?</apex:outputlabel>
+               <apex:inputField value="{!houseObj.Number_of_People__c}"/>
+            </div>
+         </div>
+         <div class="span8 pull-left">
+            <div class="form-group">
+               <apex:outputlabel styleClass="myLabel myLabelHousehold " >Are you considered the head of the household?</apex:outputlabel>
+               <apex:inputField value="{!conObj.Head_of_Household__c}"/>               
+            </div>
+         </div>
+         <div class="span8 pull-left">
+            <div class="form-group">
+               <apex:outputlabel >Are any of the additional household members dependent on you?</apex:outputlabel>
+               <apex:inputField value="{!houseObj.No_of_Dependents__c}"/>               
+            </div>
+         </div>
+      </div>
+       <div class="modal-footer"> 
+         <input type="button" value="Move to Step 3 >>" data-dismiss="modal" data-toggle="modal" data-target="#vaultModal_4" class="btn btn-success"/>
+         <a data-dismiss="modal" data-toggle="modal" data-target="#vaultModal_2">I need to go back</a>
+      </div>
+         </apex:pageBlock>
+            <!--</apex:outputPanel>-->
+   </apex:form>
+   </div>
+      </div>
+      </div>
+       <div class="modal fade" id="vaultModal_4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+   <apex:form >
+      <!--<apex:outputPanel rendered="{!page4}">-->
+         <apex:pageBlock >
+                <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h1 class="modal-title">Help us get to know you</h1>       
+            <ol data-progtrckr-steps="5" class="progtrckr">
+                <li class="progtrckr-done">Step 1</li><li class="progtrckr-done">Step 2</li><li class="progtrckr-done">Step 3</li><li class="progtrckr-todo">Step 4</li><li class="progtrckr-todo">Done</li>
+            </ol>
+      </div>
+      <div class="modal-body">
+
+         <h3>Step 3 - Please enter in your address.</h3>
+         <div class="span8 pull-left">
+            <div class="form-group">               
+               <apex:outputlabel >Street Address</apex:outputlabel>
+               <apex:inputField value="{!conObj.MailingStreet}"/>
+            </div>
+         </div>
+         <div class="span8 pull-left">
+            <div class="form-group w40p pull-left">
+               <apex:outputlabel >City</apex:outputlabel>
+               <apex:inputField value="{!conObj.MailingCity}"/>       
+            </div>
+            <div class="form-group w40p pull-left">
+               <apex:outputlabel >State/Province</apex:outputlabel>
+               <apex:inputField value="{!conObj.MailingState}"/>      
+            </div>
+         </div>
+         <div class="span8 pull-left">
+            <div class="form-group w40p pull-left">
+               <apex:outputlabel >Zip/Postal Code</apex:outputlabel>
+               <apex:inputField value="{!conObj.MailingPostalCode}"/>
+            </div>
+            <div class="form-group w40p pull-left">
+               <apex:outputlabel >Country</apex:outputlabel>
+               <apex:inputField value="{!conObj.MailingCountry}"/>
+            </div>
+         </div>
+      </div>
+       <div class="modal-footer">  
+         <input type="button" value="Move to Step 4 >>" data-dismiss="modal" data-toggle="modal" data-target="#vaultModal_5" class="btn btn-success"/>
+         <a data-dismiss="modal" data-toggle="modal" data-target="#vaultModal_3">I need to go back</a>
+      </div>
+         </apex:pageBlock>
+      <!--</apex:outputPanel>-->
+   </apex:form>
+   </div>
+      </div>
+      </div>
+       <div class="modal fade" id="vaultModal_5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+   <apex:form >
+      <!--<apex:outputPanel rendered="{!page5}">-->
+         <apex:pageBlock >
+                <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h1 class="modal-title">Help us get to know you</h1>     
+            <ol data-progtrckr-steps="5" class="progtrckr">
+                <li class="progtrckr-done">Step 1</li><li class="progtrckr-done">Step 2</li><li class="progtrckr-done">Step 3</li><li class="progtrckr-done">Step 4</li><li class="progtrckr-todo">Done</li>
+            </ol>
+      </div>
+      <div class="modal-body">
+         <h3>Step 4 - Add your payment information.</h3>
+         <div class="span8 pull-left">
+            <div class="form-group">               
+               <apex:outputlabel >Billing Street Address</apex:outputlabel>
+               <apex:inputField value="{!payObj.Billing_Address__c}"/>
+            </div>
+         </div>
+         <div class="span8 pull-left">
+            <div class="form-group w40p pull-left">
+              <apex:outputlabel >City</apex:outputlabel>
+               <apex:inputField value="{!payObj.Billing_City__c}"/>
+            </div>
+            <div class="form-group w40p pull-left">                                               
+               <apex:outputlabel >State/Province</apex:outputlabel>
+               <apex:inputField value="{!payObj.Billing_Province__c}"/>
+            </div>
+         </div>
+         <div class="span8 pull-left">
+            <div class="form-group w40p pull-left">
+               <apex:outputlabel >Zip/Postal Code</apex:outputlabel>
+               <apex:inputField value="{!payObj.Billing_Postal__c}"/>
+            </div>
+            <div class="form-group w40p pull-left">
+               <apex:outputlabel >Country</apex:outputlabel>
+               <apex:inputField value="{!payObj.Billing_Country__c}"/>
+            </div>
+         </div>
+
+         <div class="span8 pull-left">
+            <div class="form-group">               
+               <apex:outputlabel >Credit Card Number</apex:outputlabel>
+               <apex:inputField value="{!payObj.Credit_Card_Number__c}"/>
+            </div>
+         </div>
+
+         <div class="span8 pull-left">
+            <div class="form-group">               
+               <apex:outputlabel >Cardholder Name</apex:outputlabel>
+               <apex:inputField value="{!payObj.Cardholder_Name__c}"/>
+            </div>
+         </div>
+         <div class="span8 pull-left">
+            <div class="form-group w40p pull-left">
+               <apex:outputlabel >Expiration Date</apex:outputlabel>
+               <apex:inputField value="{!payObj.Expiration_Date__c}"/>
+            </div>
+            <div class="form-group w40p pull-left">
+               <apex:outputlabel >CVV</apex:outputlabel>
+               <apex:inputField value="{!payObj.CVV__c}"/>
+            </div>
+         </div>
+      </div>
+      <div class="modal-footer">
+          <input type="button" value="Complete Setup >>" data-dismiss="modal" data-toggle="modal" data-target="#vaultModal_6" class="btn btn-success"/>
+         <a data-dismiss="modal" data-toggle="modal" data-target="#vaultModal_4">I need to go back</a>         
+      </div>
+         </apex:pageBlock>
+      <!--</apex:outputPanel>-->
+   </apex:form>
+   </div>
+      </div>
+      </div>
+       <div class="modal fade" id="vaultModal_6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+   <apex:form >
+      <!--<apex:outputPanel rendered="{!page6}">-->
+         <apex:pageBlock >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>                     
+            <ol data-progtrckr-steps="5" class="progtrckr">
+                <li class="progtrckr-done">Step 1</li><li class="progtrckr-done">Step 2</li><li class="progtrckr-done">Step 3</li><li class="progtrckr-done">Step 4</li><li class="progtrckr-done">Completed</li>
+            </ol>       
+            </div>
+            <div class="modal-body">
+                <h3>Your MyVault has been successfully setup. Thank You!</h3>
+            </div>
+            <div class="modal-footer"></div>
+         </apex:pageBlock>
+           <!--</apex:outputPanel>-->
+   </apex:form>
+   </div>
+      </div>
+      </div>
+       <div class="modal fade" id="vaultModal_8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+   <apex:form >
+      <!--<apex:outputPanel rendered="{!page8}">-->
+         <apex:pageBlock >
+            <!--Custom Label-->
+            <font face="Arial">
+               <body>
+                  <table>
+                     <tr>
+                        <td>
+                           <font size="5">
+                              <apex:outputLabel >
+                                 <br/>
+                                 <h3>Thank You!</h3>
+                              </apex:outputLabel>
+                           </font>
+                        </td>
+                     </tr>
+                  </table>
+               </body>
+            </font>
+         </apex:pageBlock>
+            <!--</apex:outputPanel>-->
+   </apex:form>
+   </div>
+      </div>
+      </div>
+       <div class="modal fade" id="vaultModal_7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+   <!--<apex:outputPanel rendered="{!page7}">-->
+      <apex:form >
+         <apex:pageBlock >
+            <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h1 class="modal-title">Help us get to know you</h1>
+        <p class="subText">
+          In order to track and manage your life events, you must create a MyVault account.<br />
+          <span class="helpText">Required fields are highlighted in yellow and marked with a star (<sup class="required">*</sup>)</span>
+        </p>
+      </div>
+      <div class="modal-body">
+      <h3 class="pull-left">Tell us your full name</h3>
+         <div class="span8 pull-left">
+            <div class="form-group w30p pull-left m-r-10">        
+               <apex:outputlabel >First Name<sup class="required">*</sup></apex:outputlabel>        
+               <apex:inputtext value="{!conObj.Firstname}" html-placeholder="First Name" styleClass="form-control required"/>
+           </div>
+           <div class="form-group w15p pull-left m-l-10 m-r-10">        
+               <apex:outputlabel >Middle Name</apex:outputlabel>        
+               <apex:inputtext value="{!conObj.Middle_Name__c}" html-placeholder="Middle Name" styleClass="form-control"/>
+           </div>
+           <div class="form-group w30p pull-left m-l-10 m-r-10">        
+               <apex:outputlabel >Last Name<sup class="required">*</sup></apex:outputlabel>        
+               <apex:inputtext value="{!conObj.Lastname}" html-placeholder="Last Name" styleClass="form-control required"/>
+           </div>
+           <div class="form-group w15p pull-left m-l-10">        
+               <apex:outputlabel >Suffix</apex:outputlabel>        
+               <apex:inputtext value="{!conObj.Salutation}" html-placeholder="Suffix" styleClass="form-control"/>
+           </div>
+         </div>
+         <h3 class="pull-left">Tell us how to contact you.</h3>
+         <div class="span8 pull-left">
+            <div class="form-group w30p pull-left m-r-10">        
+               <apex:outputlabel >Primary Address<sup class="required">*</sup></apex:outputlabel>        
+               <apex:inputtext value="{!conObj.MailingStreet}" html-placeholder="Primary Address" styleClass="form-control required"/>
+           </div>
+           <div class="form-group w30p pull-left m-l-10">        
+               <apex:outputlabel >Zip Code<sup class="required">*</sup></apex:outputlabel>        
+               <apex:inputtext value="{!conObj.MailingPostalCode}" html-placeholder="Zip Code" styleClass="form-control required"/>
+           </div>
+         </div>
+         <div class="span8 pull-left">            
+           <div class="form-group w30p pull-left m-r-10">        
+               <apex:outputlabel >City Name</apex:outputlabel>        
+               <apex:inputtext value="{!conObj.MailingCity}" html-placeholder="City Name" styleClass="form-control"/>
+           </div>
+           <div class="form-group w30p pull-left m-r-10 m-l-10">        
+               <apex:outputlabel >Province</apex:outputlabel>        
+               <apex:inputtext value="{!conObj.MailingState}" html-placeholder="Province" styleClass="form-control"/>
+           </div>
+         </div>
+         <div class="span8 pull-left">
+            <div class="form-group w30p pull-left m-r-10">        
+               <apex:outputlabel >Phone Number<sup class="required">*</sup></apex:outputlabel>        
+               <apex:inputtext value="{!conObj.Phone}" html-placeholder="Phone Number" styleClass="form-control required"/>
+           </div>
+           <div class="form-group w30p pull-left m-l-10 m-r-10">        
+               <apex:outputlabel >Phone Type<sup class="required">*</sup></apex:outputlabel>        
+               <apex:inputtext value="{!conObj.Phone_Type__c}" html-placeholder="Phone Type" styleClass="form-control required"/>
+           </div>
+           <div class="form-group w30p pull-left m-l-10">        
+               <apex:outputlabel >E-mail Address<sup class="required">*</sup></apex:outputlabel>        
+               <apex:inputtext value="{!conObj.Email}" html-placeholder="E-mail Address" styleClass="form-control required"/>
+           </div>
+         </div>
+         <div class="span8 pull-left">
+            <p>
+               Do you want to link your contact information with the following agencies? Check all that applies.
+            </p>
+            <div class="form-group">               
+               <apex:inputField value="{!conObj.Address_Update_for_Agencies__c}"/>
+            </div>
+         </div>
+      </div>
+      <div class="modal-footer"> 
+         <input type="button" value="Continue" data-dismiss="modal" data-toggle="modal" data-target="#vaultModal_2" class="btn btn-success"/>
+      </div>
+         </apex:pageBlock>
+      </apex:form>
+      <!--</apex:outputPanel>-->
+   </div>
+      </div>
+      </div>
+       <div class="modal fade" id="vaultModal_9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+   <!--<apex:outputPanel rendered="{!page9}">-->
+      <apex:form >
+      <apex:pageBlock >
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h1 class="modal-title">Register for My Vault Account</h1>
+        <p class="subText">
+          In order to track and manage your life events, you must create a MyVault account.<br /> 
+          <span class="helpText">Required fields are highlighted in yellow and marked with a star <sup class="required">*</sup></span>
+        </p>
+      </div>
+      <div class="modal-body">        
+        <h3>Tell us what your username + password should be.</h3>
+        <div class="form-group w30p">
+            <apex:outputlabel >Username<sup class="required">*</sup></apex:outputlabel>
+            <apex:inputtext html-placeholder="Username" styleClass="form-control required"/>
+        </div>
+        
+        <div class="form-group w30p pull-left m-r-10">        
+            <apex:outputlabel >Password<sup class="required">*</sup></apex:outputlabel>        
+            <apex:inputtext html-placeholder="Password" styleClass="form-control required"/>
+        </div>
+        
+        <div class="form-group w30p pull-left m-l-10">      
+            <apex:outputlabel >Retype Password<sup class="required">*</sup></apex:outputlabel>
+            <apex:inputtext html-placeholder="Retype Password" styleClass="form-control required"/>
+        </div>
+        <div class="form-group pull-left p20 m-l-10">    
+            Contextual Help:<br/>Username + Password Rules
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input type="button" value="Create My Vault" data-dismiss="modal" data-toggle="modal" data-target="#vaultModal_1" class="btn btn-success"/>
+      </div>
+      </apex:pageBlock>
+   </apex:form>
+        <!--</apex:outputPanel>-->
+   </div>
+   </div>
+   </div>
+</apex:page>

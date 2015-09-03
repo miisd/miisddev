@@ -1,0 +1,28 @@
+<apex:page docType="html-5.0" standardStylesheets="false" sidebar="false" showheader="false" controller="home_unauthController" 
+	cache="true">
+
+<apex:include pageName="globalHeader" id="globalHeader" />
+
+<!-- ALL TOP SERVICES --> 
+<div class="fluid-container container ">
+	<h3>News</h3>
+	<hr/>
+	<div class="row">
+		<div class="col-md-12">
+			<apex:repeat value="{!lstAllNews}" var="allNews" id="allNews">
+				<div class="panel panel-default timeline-panel">
+				<div class="panel-heading">
+				  {!allNews.Headline__c}
+				  <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 5m ago {!allNews.CreatedBy.Name}</small>
+				</div>
+				<div class="panel-body">
+				  <p><apex:outputfield value="{!allNews.Body__c}"/></p>
+				  <a class="btn btn-xs btn-default pull-left" href="{!allNews.Link__c}">Read more</a>
+				</div>
+				</div>
+			</apex:repeat>
+		</div>	
+	</div>
+</div>	
+<apex:include pageName="globalFooter" id="globalFooter" />
+</apex:page>

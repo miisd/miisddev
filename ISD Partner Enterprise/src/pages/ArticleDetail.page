@@ -1,0 +1,33 @@
+<apex:page controller="ArticleDetailController" docType="html-5.0" id="pg1" standardStylesheets="false" sidebar="false" showHeader="false">
+        <meta charset="UTF-8"/>
+        <apex:includeScript value="{!URLFOR($Resource.jquery, 'jquery/jquery-1.10.2.min.js')}"/>
+        <apex:includeScript value="{!$Resource.jquery11}"/> 
+        <apex:includeScript value="{!$Resource.bootstrapJs}"/>        
+        <apex:stylesheet value="{!$Resource.bootstrapCss}"/>
+        <apex:stylesheet value="{!$Resource.bootstrapResponsiveCss}"/>        
+        <apex:stylesheet value="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/> 
+        <apex:stylesheet value="{!$Resource.SoulCSS}"/>
+        <apex:stylesheet value="{!$Resource.layoutCSS}"/>
+    <apex:form id="frm">
+        <apex:pageMessages id="errMsg" />
+        <div id="blurred" class="blurredpop">
+                <!-- status bar popup starts here -->
+                <div id="load" class="blurredpopinternal">
+                    <img src="{!URLFOR($Resource.img,'Loading.gif')}"/>
+                </div>
+            </div>
+        <apex:actionStatus onstart="document.getElementById('blurred').style.display='block';" onstop="document.getElementById('blurred').style.display='none';"  id="statusimage"/>
+        <apex:pageblock id="pb">
+            <div class="container-fluid well">
+                <apex:pageMessage summary="Article added successFully" severity="confirm" rendered="{!showMessage}" id="msg"/>
+                <h2><apex:outputfield value="{!KnowledgeArticleVersion.title}"/></h2>
+                <p style="font-size:100%"><apex:outputtext value="{!KnowledgeArticleVersion.summary}"/></p>
+                <p><apex:outputfield value="{!havingBabyBody.Body__c}" /></p>
+                <p style="font-size:80%">Last Updated Date -  <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" style="padding-right:2%"><apex:param value="{!KnowledgeArticleVersion.LastModifiedDate}" /></apex:outputText> Version - <apex:outputText style="padding-right:2%" value="{!KnowledgeArticleVersion.VersionNumber}"/> Views - <apex:outputText value="{!knowledgeView.viewCount}"/></p>  
+                <apex:commandButton value="Add To Reading List" action="{!addReadingList}" reRender="frm,errMsg,msg" disabled="{!showMessage}" rendered="{!showButton}" status="statusimage"/>          
+                <apex:commandButton value="Delete" action="{!deleteReadingList}" reRender="frm,errMsg,msg1" rendered="{!showDeleteButton}" status="statusimage"/>          
+            </div>
+        </apex:pageblock>
+    </apex:form>
+    <apex:include pageName="globalFooter" id="globalFooter" />
+</apex:page>

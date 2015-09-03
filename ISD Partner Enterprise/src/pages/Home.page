@@ -1,0 +1,339 @@
+<apex:page docType="html-5.0" standardStylesheets="false" sidebar="false" showheader="false" controller="home_unauthController" cache="true">
+
+	<apex:include pageName="globalHeader" id="globalHeader" />
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.5.0/slick.css" />
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"></script>
+
+	<style>
+.format-text {
+	text-align: justify;
+}
+
+.one-line span {
+	display: table-cell;
+}
+
+.dummy-link {
+	text-decoration: none !important;
+}
+
+div.slick-slide-img {
+	height: 300px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	color: white;
+	padding: 10px;
+}
+
+div.slick-slide-img-1 {
+	background-image: url("{! URLFOR($Resource.cocc, 'images/Gov_dome.jpg')}");
+}
+
+div.slick-slide-img-2 {
+	background-image: url("{! URLFOR($Resource.cocc, 'images/PEAKHealth1.jpg')}");
+	background-size: contain;
+}
+
+div.slick-slide-img-3 {
+	background-image: url("{! URLFOR($Resource.cocc, 'images/Gov_meet.jpg')}");
+}
+
+div.slick-slide-img-4 {
+	background-image: url("{! URLFOR($Resource.cocc, 'images/Frisco1.jpg')}");
+}
+);
+}
+</style>
+
+	<script>
+		$(function() {
+			$('.autoplay-container').slick({
+			  arrows: false, 
+			  slidesToShow: 3,
+			  slidesToScroll: 2,
+			  autoplay: true,
+			  autoplaySpeed: 5000,
+			  pauseOnHover : false
+			});
+		});
+	</script>
+
+
+	<div class="cc-banner">
+		<div class="container m-t-20">
+			<div class="row">
+				<div class="hero-text col-lg-12 text-center hidden-xs" style="height: auto; color: #1B3277; text-shadow: 1px 1px #CADCE8;">Making government more Efficient, Effective and Elegant</div>
+				<!--<div class="hero-text col-lg-12 text-center hidden-xs" style="height: auto;">Making government more effective, efficient and elegant</div>-->
+				<!-- Boulder County tagline -->
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<div class="cc-home-component">
+						<h4>Top Services</h4>
+						<hr />
+						<ul class="nav nav-stacked">
+							<apex:repeat value="{!lstTopServices}" var="topService" id="theRepeat3">
+								<li><a href="/StateofWellbeing/CC_LifeEvent?leid={!topService.Id}"> <apex:outputField styleClass="cc-home-img" value="{!topService.Img__c}">  {!topService.Display_Name__c} </apex:outputField>
+								</a></li>
+							</apex:repeat>
+						</ul>
+					</div>
+					<div class="text-right readMore">
+						<a href="#">View More Services <i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="cc-home-component">
+						<div class="autoplay-container" style="padding-top: 12px;">
+							<div class="col-sm-4" style="padding: 0px;">
+								<div class="tile-box" style="height: 300px; background-color: #1B3277; color: white; padding: 10px;">
+									<div class="box-body">
+										<h4 class="title-header" style="margin-top: 5px; margin-bottom: 5px; font-weight: 200; font-size: 24px !important;">State of Health</h4>
+										<!-- <h5 class="title-header" style="font-weight: 100; font-size: 14px !important; border-bottom: 1px solid #fff; padding-bottom: 15px; margin-bottom: 15px;">LANSING, MI</h5> -->
+										<p style="font-size: 15px;" class="box-content">Governor John Hickenlooper affirms Colorado’s commitment to become the healthiest State.</p>
+										<div style="margin-top: 10px; font-weight: 500; text-align: right; font-size: 12px; text-decoration: underline;">Read More...</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4" style="padding: 0px;">
+								<div class="tile-box slick-slide-img slick-slide-img-1">
+									<div class="box-body"></div>
+								</div>
+							</div>
+
+							<div class="col-sm-4" style="padding: 0px;">
+								<div class="tile-box" style="height: 300px; background-color: #3A9238; color: white; padding: 10px;">
+									<div class="box-body">
+										<h4 class="title-header" style="margin-top: 5px; margin-bottom: 5px; font-weight: 200; font-size: 24px !important;">PEAKHealth Mobile App</h4>
+										<!-- <h5 class="title-header" style="font-weight: 100; font-size: 14px !important; border-bottom: 1px solid #fff; padding-bottom: 15px; margin-bottom: 15px;">DETROIT, MI</h5> -->
+										<p style="font-size: 15px;" class="box-content">PEAKHealth gives users a simple way to keep their information up to date, find a doctor, and access important health information right
+											from their phone.</p>
+										<div style="margin-top: 10px; font-weight: 500; text-align: right; font-size: 12px; text-decoration: underline;">Read More...</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4" style="padding: 0px;">
+								<div class="tile-box slick-slide-img slick-slide-img-2">
+									<div class="box-body"></div>
+								</div>
+							</div>
+
+							<div class="col-sm-4" style="padding: 0px;">
+								<div class="tile-box" style="height: 300px; background-color: #1B3277; color: white; padding: 10px;">
+									<div class="box-body">
+										<h4 class="title-header" style="margin-top: 5px; margin-bottom: 5px; font-weight: 200; font-size: 24px !important;">Colorado Community Meetings</h4>
+										<!-- <h5 class="title-header" style="font-weight: 100; font-size: 14px !important; border-bottom: 1px solid #fff; padding-bottom: 15px; margin-bottom: 15px;">DETROIT, MI</h5> -->
+										<p style="font-size: 15px;" class="box-content">Be part of a conversation with Governor Hickenlooper and his team about the issues affecting you, your community and our state.</p>
+										<div style="margin-top: 10px; font-weight: 500; text-align: right; font-size: 12px; text-decoration: underline;">Read More...</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4" style="padding: 0px;">
+								<div class="tile-box slick-slide-img slick-slide-img-3">
+									<div class="box-body"></div>
+								</div>
+							</div>
+
+							<div class="col-sm-4" style="padding: 0px;">
+								<div class="tile-box" style="height: 300px; background-color: #3A9238; color: white; padding: 10px;">
+									<div class="box-body">
+										<h4 class="title-header" style="margin-top: 5px; margin-bottom: 5px; font-weight: 200; font-size: 24px !important;">Frisco and Leadville</h4>
+										<!-- <h5 class="title-header" style="font-weight: 100; font-size: 14px !important; border-bottom: 1px solid #fff; padding-bottom: 15px; margin-bottom: 15px;">DETROIT, MI</h5> -->
+										<p style="font-size: 15px;" class="box-content">Community meetings will occur in Frisco and Leadville, Friday, Aug 21.</p>
+										<div style="margin-top: 10px; font-weight: 500; text-align: right; font-size: 12px; text-decoration: underline;">Read More...</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4" style="padding: 0px;">
+								<div class="tile-box slick-slide-img slick-slide-img-4">
+									<div class="box-body"></div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- <br />
+					<ul class="nav nav-stacked">
+						<li><a class="cc-home-stat" href="#">
+								<h4>
+									<span class="label label-success pull-right">+10k</span> Got Married this month
+								</h4>
+						</a></li>
+						<li><a class="cc-home-stat" href="#">
+								<h4>
+									<span class="label label-primary pull-right">15k</span> Received Medicare
+								</h4>
+						</a></li>
+					</ul>
+					<div class="text-right readMore">
+						<a href="/StateofWellbeing/AllNews">View More Statistics <i class="fa fa-arrow-circle-right"></i></a>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- SERVICES BY CATEGORY -->
+	<div class="container m-t-10 cc-lifeevents well">
+		<apex:form id="frm">
+			<ul role="tablist" class="nav nav-tabs">
+				<apex:repeat value="{!categoryType}" var="category">
+					<li><a class="tabTitle" href="#family" data-toggle="tab" role="tab" onclick="openCategory('{!category}');return false;"> <span class="Category">{!category}</span>
+					</a></li>
+				</apex:repeat>
+			</ul>
+			<apex:outputPanel id="description">
+				<div class="tab-content">
+					<!--<apex:dataTable value="{!lstCmsLifeEvent}" var="lifeEventRecord" title="Related Events" styleClass="table">
+                <apex:column headerValue="Related Event">
+                <a onclick="openLifeEvent('{!lifeEventRecord.Id}');return false;" style="padding-bottom:2%">
+                  <apex:outputText value="{!lifeEventRecord.Display_Name__c}" /></a>
+                </apex:column>
+            </apex:dataTable>   -->
+
+					<ul role="tablist" class="nav nav-tabs">
+						<apex:repeat value="{!lstCmsLifeEvent}" var="lifeEventRecord">
+							<li class="col-md-2"><a class="" onclick="openLifeEvent('{!lifeEventRecord.Id}');return false;"> <apex:outputField value="{!lifeEventRecord.Img__c}" />
+
+									<h5>
+										<apex:outputLink value="/CC_LifeEvent?leid={!lifeEventRecord.Id}"> {!lifeEventRecord.Display_Name__c} </apex:outputLink>
+									</h5>
+									<p>{!IF(lifeEventRecord.Description__c!= null && Len(lifeEventRecord.Description__c)>60 ,(LEFT(lifeEventRecord.Description__c,60) & "...."),lifeEventRecord.Description__c)}</p>
+							</a></li>
+						</apex:repeat>
+					</ul>
+				</div>
+			</apex:outputPanel>
+			<div id="blurred" class="blurredpop">
+				<!-- status bar popup starts here -->
+				<div id="load" class="blurredpopinternal">
+					<img src="{!URLFOR($Resource.img,'Loading.gif')}" />
+				</div>
+			</div>
+			<apex:actionStatus onstart="document.getElementById('blurred').style.display='block';" onstop="document.getElementById('blurred').style.display='none';" id="statusimage" />
+			<apex:actionFunction name="openCategory" action="{!getLifeEvent}" reRender="description" status="statusimage">
+				<apex:param name="CategoryName" value="" />
+			</apex:actionFunction>
+
+			<apex:actionFunction name="openLifeEvent" action="{!redirectToLifeEvent}" reRender="frm" status="statusimage">
+				<apex:param name="lifeEventId" value="" />
+			</apex:actionFunction>
+			<script>
+                $(document).ready(function() {
+                    $('a:contains("My Money")').addClass('cc-tab-finance');
+                    $('a:contains("My Family")').addClass('cc-tab-family');
+                    $('a:contains("My Home")').addClass('cc-tab-home');
+                    $('a:contains("My Ride")').addClass('cc-tab-transport');
+                    $('a:contains("My Citizenship")').addClass('cc-tab-citizenship');
+                    $('a:contains("My Education")').addClass('cc-tab-education');
+                    $('a:contains("My Job")').addClass('cc-tab-job');
+                    $('a:contains("My Health")').addClass('cc-tab-health');
+                    $('a:contains("My Trip")').addClass('cc-tab-trip'); 
+                    !--boulder county life services--><!--
+                    $('a:contains("Housing")').addClass('cc-tab-home'); <
+                    $('a:contains("Food Assistance")').addClass('cc-tab-finance');
+                    $('a:contains("Cash Assistance")').addClass('cc-tab-finance');
+                    $('a:contains("Elder Services")').addClass('cc-tab-family');
+                    $('a:contains("Health Coverage")').addClass('cc-tab-health');
+                    $('a:contains("Education and Skill Building")').addClass('cc-tab-education');
+                    $('a:contains("Family and Children Services")').addClass('cc-tab-family'); -->
+                });
+
+                activeEvent = '';
+                $('li.Category').on('click', function() {
+                    activeEvent = $(this).children('a').attr('class');
+                });
+                function setActiveEvent() {
+                    $('li.Category a').removeClass('active');
+                    $('a.' + activeEvent).parent('li').addClass('active');
+
+                }
+            </script>
+		</apex:form>
+		<script>
+            $(document).ready(function() {
+                $('.cc-lifeevents .nav-tabs li:first-child .tabTitle').trigger('click');
+                $('.cc-lifeevents .nav-tabs li:first-child').addClass('active');
+            });
+        </script>
+	</div>
+
+
+
+	<apex:include pageName="globalFooter" id="globalFooter" />
+	<style>
+.cc-lifeevents {
+	padding: 10px !important;
+}
+
+a, a:active, a:visited, a:link, a:focus {
+	color: #036 !important;
+}
+
+a:hover {
+	color: #069 !important;
+}
+
+<!--
+Boulder County Background--><!--.cc-banner {
+	position: relative;
+	overflow: hidden;
+	background: url('https://fullforce.force.com/StateofWellbeing/resource/img/cc-banner-bc.jpg') repeat-x center bottom;
+	background-size: cover;
+	min-height: 700px;
+	height: auto;
+}
+
+-->
+<!--
+CitizenConnect Background-->.cc-banner {
+	position: relative;
+	overflow: hidden;
+	/* background: url('https://fullforce.force.com/StateofWellbeing/resource/img/cc-banner_old.jpg') repeat-x center bottom; */
+	background: url("{! URLFOR($Resource.cocc, 'images/Mountains1.jpg')}") repeat-x center;
+	background-size: cover; <!--
+	min-height: 700px; -->
+	height: auto;
+}
+
+.cc-banner .hero-text {
+	height: 200px;
+	font-size: 4em;
+	color: #ffffff;
+	font-weight: bold;
+	padding: 50px 0px;
+}
+
+.cc-home-component {
+	background-color: #fff !important;
+	border-radius: 4px !important;
+	margin-top: 10px !important;
+	margin-bottom: 10px !important;
+	padding-top: 5px !important;
+	padding-bottom: 10px !important;
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+}
+
+.cc-home-stat {
+	background-color: #fff !important;
+	border-radius: 4px !important;
+	margin-bottom: 15px !important;
+}
+
+.cc-home-img {
+	height: 35px !important;
+	width: 35px!!important;
+	margin-right: 10px;
+}
+
+.readMore {
+	background: none repeat scroll 0 0 #eee;
+	opacity: 0.6;
+	padding-right: 10px;
+}
+</style>
+</apex:page>

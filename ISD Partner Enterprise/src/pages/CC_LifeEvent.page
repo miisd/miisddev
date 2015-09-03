@@ -1,0 +1,264 @@
+<apex:page docType="html-5.0" controller="CC_LifeEvent_Controller" id="pg" standardStylesheets="false" sidebar="false" showHeader="false">
+    <c:CC_LifeEventStyles />
+    <style>
+    #bannerbg {
+        display: none !important;
+    }
+    .carousel-control{
+        font-family: 'Trebuchet MS';
+        font-size: 35px !important;
+        font-weight: bold !important;
+        line-height: 41px !important;
+    }
+    a.icon {
+        font-size: 12px;
+        margin-right: 10px;
+        margin-top: 12px;
+    }
+    .popupText{
+        display:none;
+    }
+    .scenarioTabs {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .scenarioTabs > div {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .alphinatSection {
+        background-color: rgb(238, 238, 238);
+        border-radius: 0;
+        bottom: 0;
+        height: 200px;
+        margin: 0;
+        position: absolute;
+        margin-left: -15px;
+    }
+    .scenarioTabs ul.nav-stacked {
+        min-height: 740px;
+    }
+    
+    .carousel-indicators .inactive{
+    width:12px !important;
+    height:12px !important;
+    margin:0 !important;
+    }
+    </style>
+    <script>
+        function test1(){
+            if($('.popupText')[0].innerText=="true"){
+                console.log('1');
+                $(this).css('color','red');
+                $('#popModal').modal('show');
+            }
+            else{
+                console.log('2');
+            }
+        }
+        function test2(obj){
+            console.log($('.popupText')[0].innerText);
+        }
+
+    </script>
+    <section id="" class="wrapper">
+        <apex:include pageName="globalHeader" id="globalHeader" />
+        <apex:form id="frm">
+        <div class="mainContent container">
+            <section class="col-md-12">
+                <apex:pageMessages id="errMsg"/>
+            </section>
+            <apex:outputPanel id="popUpPanel">
+            <section class="col-md-12 customerName" style="width:100%">
+                <h3 class="w100p pull-left"> <a class="icon pull-left" onClick="javascript:window.history.back();">Back</a> {!cmsLifeEvent.Display_Name__c}
+          
+                    <apex:outputText rendered="{!NOT(inVault) && $User.LastName != 'Site Guest User' && isNavigator = true}">
+                        <apex:commandButton action="{!addEventToVault}" value="Add to My Vault" styleClass="btn btn-success btn-lg border-r-0, icon pull-right" />
+                    </apex:outputText>
+                    <apex:outputText rendered="{!inVault}">
+                        <span class="label label-info">In Your Vault</span>
+                        <!--<input type="submit" value="In Your Vault" class="btn btn-success btn-lg disabled border-r-0" />-->
+                    </apex:outputText>
+
+                    <!--<apex:outputText rendered="{!NOT(ISNULL(currentApplicationStep)) && currentApplicationStep.Status__c == 'Pending'}">
+                        <a onclick="return markStepAsCompleted('{!currentApplicationStep.Id}')" class="btn btn-success border-r-0">Mark Step as Complete</a>
+                    </apex:outputText>-->
+
+                </h3>
+                <p class="pull-left w100p m-r-20"> {!cmsLifeEvent.Description__c} </p>
+            </section>
+            </apex:outputPanel>
+            <!--/.fluid-container-->
+            <div id="blurred" class="blurredpop">
+                <!-- status bar popup starts here -->
+                <div id="load" class="blurredpopinternal">
+                    <img src="{!URLFOR($Resource.img,'Loading.gif')}"/>
+                </div>
+            </div>
+            <apex:outputText value="{!canUseVault}" styleClass="popupText"></apex:outputText>
+            <apex:actionStatus onstart="document.getElementById('blurred').style.display='block';" onstop="document.getElementById('blurred').style.display='none';"  id="statusimage"/>
+            <!--<apex:actionFunction name="openKnowledge" action="{!openActivities}" reRender="selectColor,popUpPanel,popModal,errMsg" status="statusimage" oncomplete="triggerCarousel();test1();activeEvent();callPop(); ">
+                <apex:param name="activityName" value=""/>
+                <apex:param name="activityId" value=""/>
+                <apex:param name="lifeEventId" value=""/>
+                <apex:param name="canUseVault" value=""/>
+            </apex:actionFunction>-->
+            <apex:actionFunction name="openKnowledge" action="{!openActivities}" reRender="selectColor, modalTest" status="statusimage" oncomplete="triggerCarousel();test1();activeEvent();callPop();">
+                <apex:param name="activityName" value=""/>
+                <apex:param name="activityId" value=""/>
+                <apex:param name="lifeEventId" value=""/>
+                <apex:param name="canUseVault" value=""/>
+            </apex:actionFunction>
+            <apex:actionFunction name="markStepAsCompleted" action="{!markStepAsCompleted}" rerender="pb"   status="statusimage" oncomplete="activeEvent();callPop();">
+                <apex:param name="applicationStepId" assignTo="{!applicationStepId}" value=""/>
+            </apex:actionFunction>
+            <apex:pageBlock id="pb">
+                <section class="col-md-12 scenarioTabs m-b-20">
+                    <div class="col-md-4 pull-left">
+                        <!-- required for floating -->
+                       <!-- Nav tabs -->
+                            <ul class="nav nav-tabs nav-stacked">
+                                <apex:repeat value="{!stepGroups}" var="eventType">
+                                    <li class="disabled">
+                                        <h4>{!eventType.eventGroup.Display_Name__c}</h4>
+                                    </li>
+
+                                    <apex:repeat value="{!eventType.steps}" var="step">
+                                        <li class="eventName">
+
+                                            <!--<apex:outputLink styleClass="" value="#profile" onclick="openKnowledge('{!step.applicationStep.Display_Name__c}','{!step.applicationStep.id}','{!step.relatedApplicationStep.Life_Event__c}');test1('{!step.applicationStep.Can_Use_Vault__c}');return false;" style="{!IF(step.status == 'Started','background-color:#051A37;color: white;','')}{!IF(step.status == 'Submitted','background-color:#5BC0DE;color: #000','')}"> {!step.applicationStep.Display_Name__c}</apex:outputLink>-->
+                                            <apex:outputLink value="#profile" onclick="openKnowledge('{!step.applicationStep.Display_Name__c}','{!step.applicationStep.id}','{!step.relatedApplicationStep.Life_Event__c}','{!step.applicationStep.Can_Use_Vault__c}');return false;" style="{!IF(step.status == 'Started','background-color:#051A37;color: #000;','')}{!IF(step.status == 'Submitted','background-color:#5bc0de;color: #000','')}{!IF(step.status == 'Approved','background-color:#5cb85c;color: #000','')}">
+                                            <span class="fakeBlock">{!step.applicationStep.Display_Name__c} </span>
+                                            <!--{!NOT(ISNULL(currentApplicationStep)) && currentApplicationStep.Status__c == 'Pending'}-->
+                                               <apex:outputPanel rendered="{!inVault && step.status == 'Pending'}" styleClass="pull-right">
+                                                  <button onclick="return markStepAsCompleted('{!step.relatedApplicationStep.Id}')"><span class="glyphicon glyphicon-check"></span></button>
+                                               </apex:outputPanel>
+                                            </apex:outputLink>
+                                          <!--  <a href="javascript:void(0);" data-toggle="modal" data-target="#popModal">Vault PopUp</a>-->
+                                        </li>
+                                    </apex:repeat>
+
+                                  <!-- <apex:repeat value="{!eventType.steps}" var="step">
+                                        <li>
+                                     <apex:outputPanel rendered="{!if(step.applicationStep.Can_Use_Vault__c==true,true,false)}"  >
+                                            <apex:outputLink styleClass="" value="#profile" onclick="openKnowledge('{!step.applicationStep.Display_Name__c}','{!step.applicationStep.id}','{!step.relatedApplicationStep.Life_Event__c}');return false;" style="{!IF(step.status == 'Started','background-color:#051A37;color: white;','')}{!IF(step.status == 'Submitted','background-color:#5BC0DE;color: #000','')}"> {!step.applicationStep.Display_Name__c}</apex:outputLink>
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#popModal">Vault PopUp</a>
+                                        </apex:outputPanel>
+                                         <apex:outputPanel rendered="{!if(step.applicationStep.Can_Use_Vault__c==true,false,true)}"  >
+                                            <apex:outputLink styleClass="" value="#profile"> {!step.applicationStep.Display_Name__c}</apex:outputLink>
+
+                                        </apex:outputPanel>
+                                        </li>
+                                    </apex:repeat>-->
+
+                                </apex:repeat>
+                            </ul>
+                    </div>
+                    <apex:outputPanel id="selectColor">
+                    <div class="col-md-8 pull-left" style="min-height: 740px;">
+                        <!-- Tab panes -->
+                        <div class="responsive-alphinat" style="min-height: 550px;">
+                            <!--alert("{!iframeURL}");-->
+                            <apex:iframe src="{!iframeURL}" frameBorder="0" scrolling="TRUE" height="540" />
+                        </div>
+                        <div class="col-md-12 well alphinatSection">
+                            <!--<input type="button" value="Enroll in Direct Deposit" class="btn btn-success m-r-20" />
+                                <input type="button" value="Check CCTB Eligibility" class="btn btn-success m-r-20" />
+                                <input type="button" value="Apply for CCTB Online *" class="btn btn-success" />-->
+                            <div id="carousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <apex:repeat value="{!lstKnowledgeVersion}" var="lifeActivity">
+                                        <li data-target="#carousel" class=""></li>
+                                    </apex:repeat>
+                                </ol>
+                                <!-- Wrapper for slides -->
+
+                                <div class="carousel-inner">
+                                    <apex:repeat value="{!lstKnowledgeVersion}" var="lifeActivity">
+                                        <div class="item">
+                                            <div class="carousel-caption">
+                                                <h4><a onclick="return open_win('/apex/ArticleDetail?id={!lifeActivity.Id}&le_id={!lifeEventIdRecord}',900,700);" style="text-shadow:none;">{!lifeActivity.title}</a></h4>
+                                                <p style="text-shadow:none;">
+                                                    {!lifeActivity.summary}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </apex:repeat>
+                                </div>
+
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    </apex:outputPanel>
+                </section>
+            </apex:pageBlock>
+        </div>
+    </apex:form>
+
+        <div class="modal fade" id="popModal">
+          <div class="modal-dialog" >
+            <div class="modal-content" style="top: 250px;">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="false">&times;</span><span class="sr-only">Close</span></button>
+                <h1 class="modal-title">Consent use of Data</h1>
+                <p>The following form require contact Information. This can be pre-populated from your vault.</p>
+              </div>
+              <div class="modal-body">
+                <h3>Use Vault Information</h3>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Proceed without use</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Consent use of data</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <script>
+           $(document).ready(function(){
+               
+               console.log('aa');
+               activeEvent();
+
+           });
+           $('#popModal').modal('hide');
+
+           /*Added by Piyush*/
+            function activeEvent() {
+
+                   $('.eventName').on('click', function(){
+                       $('.eventName').removeClass('active');
+                       $(this).addClass('active');
+                   });
+
+               }
+            /****************/
+           function callPop() {
+                $("a:contains(Apply for Marriage License) .fakeBlock").on('click', function(){
+                    $('#popModal').modal('show');
+                });
+                $("a:contains(Update MedicAid ) .fakeBlock").on('click', function(){
+                   // $('#popModal').modal('show');
+                });
+
+            }
+        </script>
+
+        <apex:outputPanel id="modalTest" rendered="{!inVaultVisible}">
+            <script>
+               /* $('#popModal').modal('show');*/
+            </script>
+        </apex:outputPanel>
+
+        <apex:include pageName="globalFooter" id="globalFooter" />
+    </section>
+</apex:page>

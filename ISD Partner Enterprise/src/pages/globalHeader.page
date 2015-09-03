@@ -1,0 +1,188 @@
+<!--
+     * @Page Name    : Home
+     * @Description  : This page is the unauthenticated page.
+     * @Created By   : @ShishirChauhan
+     * @Created On   :
+     * @Modification Log:
+     *
+     * @Developer                Date                  Description
+     *
+     * @ShishirChauhan                                   Created
+     * @Subodhbahl                                       Added modification logs
+     * @Subodhbahl                                       Modified, added the functionality as the new wireframes
+     * @MarkDiego                10/01/2014              Added MYVAULT to Tabs for Authenticated User
+     *
+-->
+
+<apex:page controller="CC_GlobalHeader" sidebar="false" showheader="false" standardStylesheets="false">
+        <apex:includeScript value="{!$Resource.jquery11}"/>
+        <!-- BOOTSTRAP -->
+        <apex:stylesheet value="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+        <apex:stylesheet value="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+        <apex:stylesheet value="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
+        <!-- JQUERY -->
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+        <!-- CSS CUSTOM -->
+        <apex:stylesheet value="{!$Resource.SoulCSS}"/>
+        <apex:stylesheet value="{!$Resource.layoutCSS}"/>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+    <header>
+    <div class="navbar navbar-custom navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header page-scroll">
+          <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <div class="pull-left">
+            <apex:outputLink value="/apex/Home">
+                <span style="display:table-cell">
+                <img src="{!URLFOR($Resource.cocc,'images/co_logo_new2.png')}" alt="State of Colorado" class="cc-logo" style="margin-left: 0px !important;" />
+                </span>
+                <span style="display:table-cell">
+                <img src="{!URLFOR($Resource.cocc,'images/co_logo_new_part2.png')}" alt="State of Colorado" class="cc-logo" style="margin-left: 0px !important; vertical-align: text-top;" />
+                </span>
+              <!-- <img src="{!URLFOR($Resource.img,'/DHHS_Logo1.png')}" alt="Boulder County HHS" class="cc-logo" height="28%" width="28%"/> Boulder County Header Logo -->
+              <!-- <img src="{!URLFOR($Resource.img,'/cc-state-logo.png')}" alt="Citizen Connect Logo" class="cc-logo"/>
+              <img src="{!URLFOR($Resource.img,'/cc-logo.png')}" alt="Citizen Connect Logo" class="cc-logo"/> -->
+            </apex:outputLink>
+          </div>
+        </div>
+        <div id="navbarCollapse" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <apex:outputText rendered="{!$User.LastName != 'Site Guest User'}">
+            <li><apex:outputlink value="/apex/HomeAuthenticated"><i class="fa fa-fw fa-university"></i>  VAULT</apex:outputlink></li>
+            </apex:outputText>
+            <li><apex:outputLink value="/apex/FindNearby">FIND</apex:outputLink></li>
+            <li><a data-target="#helpModal" data-toggle="modal" href="#">CONNECT</a></li>
+            <li><apex:outputLink value="/apex/AllNews">NEWS</apex:outputLink></li>
+            <li><apex:outputLink rendered="{!$User.LastName != 'Site Guest User'}" value="/apex/IWLHome">CONTRIBUTE</apex:outputLink></li>
+            <li><apex:outputText rendered="{!$User.LastName == 'Site Guest User'}">
+              <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+            </apex:outputText></li>
+            <li class="dropdown">
+              <apex:outputText rendered="{!$User.LastName != 'Site Guest User'}">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-user"></i> {!$User.FirstName} <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                      <apex:outputlink value="/apex/CC_MyProfile"><i class="fa fa-fw fa-home"></i> Manage Your Household</apex:outputlink>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                      <apex:outputlink value="/secur/logout.jsp?retUrl=https%3A%2F%2Ffullforce.force.com%2FStateofWellbeing%2FCommunitiesLanding">Logout</apex:outputlink>
+                    </li>
+                </ul>
+              </apex:outputText>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- SEARCH bar -->
+    <div class="cc-srch-bg">
+      <div class="container">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+          <apex:form >
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Start your search here..." name="srch-term"
+                value="{!strSeacrhText}" id="eventTextBox"/>
+              <div class="input-group-btn">
+                <button onclick="return openSearchResults();" class="btn btn-default">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </div>
+            </div>
+          </apex:form>
+        </div>
+      </div>
+    </div>
+    </header>
+
+<apex:include pageName="help_centre" id="help_centre" />
+<apex:include pageName="Login" id="Login" />
+
+<!-- SCRIPT -->
+<script>
+  $.widget( "custom.catcomplete", $.ui.autocomplete, {
+    _create: function() {
+      this._super();
+      this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+    },
+    _renderMenu: function( ul, items ){
+      var self = this,
+      currentCategory = "";
+      $.each( items, function( index, item ) {
+        if ( item.category != currentCategory ) {
+          ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+          currentCategory = item.category;
+        }
+        var li = self._renderItemData( ul, item );
+        if ( item.category ) {
+          li.attr( "aria-label", item.category + " : " + item.label );
+        }
+      });
+    }
+  });
+
+  function NavigateToTitle(item){
+      if(item.category=='Life Events')
+        window.open('/StateofWellbeing/CC_LifeEvent?leid='+item.id,'_self');
+      if(item.category=='Knowledge Articles')
+        window.open('/StateofWellbeing/ArticleDetail?id='+item.id,'_self');
+      return;
+  }
+
+  function openSearchResults(){
+    window.location = '/StateofWellbeing/SearchResults?token='+$('#eventTextBox').val();
+    return false;
+    // window.open('/StateofWellbeing/SearchResults?token='+$('#eventTextBox').val(),'_self');
+  }
+
+  function callActionFunctionSearch(){
+      console.log($('#eventTextBox').val());
+      console.log('***'+'{!strSeacrhText}');
+      $('[id$=hidden]').val($('#eventTextBox').val());
+      callmethod();
+  }
+
+  $(function(){
+      $( "#eventTextBox" ).catcomplete({
+              minLength: 2,
+                  source: function(request, response) {
+                      queryTerm = request.term;
+                      //console.log('i am called first');
+                      CC_GlobalHeader.searchKnowledgeBase(request.term, function(result, event){
+                          if(event.type == 'exception') {
+                              alert(event.message);
+                          } else {
+                              eventObjects = result;
+                              //console.log(movieObjects);
+                              response(eventObjects );
+                          }
+                      });
+                  },
+              select: function( event, ui ) {
+                 console.log(ui.item.id);
+                 $('[id$=eventTextBox]').val( ui.item.Id );
+                 NavigateToTitle(ui.item);
+              }
+      });
+  });
+</script>
+<!-- STYLES -->
+
+</apex:page>

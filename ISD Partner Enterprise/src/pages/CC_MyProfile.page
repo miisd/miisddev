@@ -1,0 +1,189 @@
+<apex:page docType="html-5.0" standardStylesheets="false" sidebar="false" showheader="false" controller="MyProfilePageController" >
+<apex:include pageName="globalHeader" id="globalHeader" />
+
+  <apex:form id="theForm" html-novalidate="">
+    <apex:actionFunction name="editMember" action="{!editHouseholdMember}" reRender="theForm">
+      <apex:param name="selectedHouseholdMemberId" value=""/>
+    </apex:actionFunction>
+  
+    <apex:actionFunction name="deleteMember" action="{!deleteHouseholdMember}" reRender="theForm">
+      <apex:param name="selectedHouseholdMemberId" value="" />
+    </apex:actionFunction>
+    <div class="container">
+      <section class="col-md-10 col-md-offset-1 customerName m-t-20">
+        <table>
+          <tr>
+            <td>
+              <apex:image url="{!user.smallphotourl}" alt="{!user.FirstName}" styleClass="img-rounded"/>
+            </td>
+            <td style="padding-left: 1em">
+              <h3>{!user.FirstName}&apos;s Household</h3>
+              <div><apex:outputlink value="/apex/HomeAuthenticated"><i class="fa fa-fw fa-university"></i> Back to your Vault</apex:outputlink></div>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section class="col-md-10 col-md-offset-1 m-t-20 well container">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>{!$ObjectType.Contact.fields.FirstName.Label}</label>
+            <span class="form-control">
+              <apex:outputField value="{!User.Contact.FirstName}"/>
+            </span>
+          </div>
+          <div class="form-group">
+            <label>{!$ObjectType.Contact.fields.LastName.Label}</label>
+            <span class="form-control">
+              <apex:outputField value="{!User.Contact.LastName}"/>
+            </span>
+          </div>
+          <div class="form-group">
+            <label>{!$ObjectType.Contact.fields.Birthdate.Label}</label>
+            <span class="form-control">
+              <apex:outputField value="{!User.Contact.Birthdate}"/>
+            </span>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <apex:inputField styleClass="form-control" value="{!User.Contact.Phone}"/>
+          </div>
+          <div class="form-group">
+            <label>{!$ObjectType.Contact.fields.MobilePhone.Label}</label>
+            <apex:inputField styleClass="form-control" value="{!User.Contact.MobilePhone}"/>
+          </div>
+          <div class="form-group">
+            <label>{!$ObjectType.Contact.fields.Email.Label}</label>
+            <apex:inputField styleClass="form-control" value="{!User.Contact.Email}"/>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>{!$ObjectType.Contact.fields.MailingStreet.Label}</label>
+            <apex:inputText styleClass="form-control" value="{!User.Contact.MailingStreet}"/>
+          </div>
+          <div class="form-group">
+            <label>{!$ObjectType.Contact.fields.MailingCity.Label}</label>
+            <apex:inputField styleClass="form-control" value="{!User.Contact.MailingCity}"/>
+          </div>
+          <div class="form-group">
+            <label>{!$ObjectType.Contact.fields.MailingState.Label}</label>
+            <apex:inputField styleClass="form-control" value="{!User.Contact.MailingState}"/>
+          </div>
+          <div class="form-group">
+            <label>{!$ObjectType.Contact.fields.MailingPostalCode.Label}</label>
+            <apex:inputField styleClass="form-control" value="{!User.Contact.MailingPostalCode}"/>
+          </div>
+          <div class="form-group">
+            <label>{!$ObjectType.Contact.fields.MailingCountry.Label}</label>
+            <apex:inputField styleClass="form-control" value="{!User.Contact.MailingCountry}"/>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <apex:commandButton styleClass="btn btn-success" action="{!save}" value="Save" />
+          </div>
+        </div>
+      </section>
+
+      <section class="col-md-10 col-md-offset-1 m-t-20 well container">
+        <div class="col-md-12">
+          <h4>Other Household Members</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>
+                    {!$ObjectType.Contact.fields.Name.Label}
+                  </th>
+                  <th>
+                    Phone
+                  </th>
+                  <th>
+                    {!$ObjectType.Contact.fields.Email.Label}
+                  </th>
+                  <th>
+                    {!$ObjectType.Contact.fields.Birthdate.Label}
+                  </th>
+                  <th>
+                    {!$ObjectType.Contact.fields.Relationship__c.Label}
+                  </th>
+                  <th>
+                    &nbsp;
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <apex:repeat var="member" value="{!householdMembers}">
+                  <tr>
+                    <td><apex:outputField value="{!member.name}"/></td>
+                    <td><apex:outputField value="{!member.phone}"/></td>
+                    <td><apex:outputField value="{!member.email}"/></td>
+                    <td><apex:outputField value="{!member.birthdate}"/></td>
+                    <td><apex:outputField value="{!member.Relationship__c}"/></td>
+                    <td>
+                      <a href="#" onclick="editMember('{!member.id}'); return false;">Edit</a> | 
+                      <a href="#" onclick="if (confirm('Are you sure you wish to delete this contact?')) {deleteMember('{!member.id}');} return false;">Delete</a>
+                    </td>
+                  </tr>
+                </apex:repeat>
+                <apex:outputText rendered="{!householdMembers.size == 0}">
+                  <tr>
+                    <td colspan="3">
+                      No other household members found. Add them below.
+                    </td>
+                  </tr>
+                </apex:outputText>
+              </tbody>
+            </table>
+          <div class="form-group">
+            <apex:commandButton reRender="theForm" styleClass="btn btn-info" value="Add Household Member" action="{!showAddHouseholdMemberForm}"/>
+          </div>
+        </div>
+      </section>
+      <apex:outputText rendered="{!showHouseholdMemberForm}">
+        <section class="col-md-10 col-md-offset-1 m-t-20 well container">
+          <div class="col-md-12">
+            <h4>{!IF(newHouseholdMember.id == null, 'Add', 'Edit')} Household Member</h4>
+            <div class="help-block">
+              <apex:messages />
+            </div>
+            <section class="col-md-6">
+              <div class="form-group">
+                <label>{!$ObjectType.Contact.fields.FirstName.Label}</label>
+                <apex:inputField styleClass="form-control" value="{!newHouseholdMember.FirstName}"/>
+              </div>
+              <div class="form-group">
+                <label>{!$ObjectType.Contact.fields.LastName.Label}</label>
+                <apex:inputField styleClass="form-control" value="{!newHouseholdMember.LastName}"/>
+              </div>
+              <div class="form-group">
+                <label>{!$ObjectType.Contact.fields.Birthdate.Label} (mm/dd/yyyy)</label>
+                <apex:inputField styleClass="form-control" value="{!newHouseholdMember.Birthdate}"/>
+              </div>
+            </section>
+            <section class="col-md-6">
+              <div class="form-group">
+                <label>{!$ObjectType.Contact.fields.Relationship__c.Label}</label>
+                <apex:inputField styleClass="form-control" value="{!newHouseholdMember.Relationship__c}"/>
+              </div>
+              <div class="form-group">
+                <label>{!$ObjectType.Contact.fields.Email.Label}</label>
+                <apex:inputField styleClass="form-control" value="{!newHouseholdMember.Email}"/>
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <apex:inputField styleClass="form-control" value="{!newHouseholdMember.Phone}"/>
+              </div>
+            </section>
+            <section class="col-md-12">
+              <div class="form-group">
+                <apex:commandButton styleClass="btn btn-success" reRender="theForm" action="{!addHouseholdMember}" value="{!IF(newHouseholdMember.id == null, 'Add', 'Edit')} Household Member" />&nbsp; &nbsp;
+                <apex:commandButton styleClass="btn btn-default" action="{!cancel}" immediate="true" value="Cancel" />
+              </div>
+            </section>
+          </div>
+        </section>
+      </apex:outputText>
+    </div>
+  </apex:form>
+  <apex:include pageName="globalFooter"/>
+</apex:page>

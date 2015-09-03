@@ -1,0 +1,13 @@
+<apex:page docType="html-5.0" standardStylesheets="false" sidebar="false" showHeader="false">
+  <footer>
+    <div class="container">
+      <div class="col-sm-7 col-sm-offset-1">
+        <span>&copy; 2015 Deloitte. All rights Reserved.</span>
+        <a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a>
+      </div>
+      <div class="col-sm-3 text-right">
+        <apex:image url="{!URLFOR($Resource.img,'/logo-deloitte.png')}" alt="powered by Deloitte."/>
+      </div>
+    </div>
+  </footer>
+</apex:page>

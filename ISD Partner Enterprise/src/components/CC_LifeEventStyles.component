@@ -1,0 +1,236 @@
+<apex:component >
+  <apex:includeScript value="{!$Resource.jquery11}"/>
+  <!--<apex:includeScript value="{!$Resource.bootstrapJs}"/> --> 
+  <!--<apex:stylesheet value="{!$Resource.bootstrapCss}"/> -->
+  <apex:stylesheet value="{!$Resource.bootstrapResponsiveCss}"/>
+  <apex:stylesheet value="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
+  <apex:stylesheet value="{!$Resource.SoulCSS}"/>
+  
+  <style>
+        .blurredpop
+        {
+        display:none; 
+        position:fixed; 
+        top:0; 
+        left:0px; 
+        background-color:white; 
+        height:100%; 
+        width:100%; 
+        z-index:99999999999; 
+        opacity:0.6;
+        }
+        .blurredpopinternal
+        {
+        display:block; 
+        text-align:center; 
+        vertical-align:middle;
+        height:auto; 
+        width:auto; 
+        position:relative; 
+        top:40%;
+        z-index:100;
+        margin:0 auto;
+        }
+        a,a label {
+        cursor: pointer;
+        }
+        /* Having a baby Styles */
+        .w96p {
+        width: 96% !important;
+        padding: 2%;
+        }
+        .mainContent {
+        min-height: 300px;
+        overflow: hidden;
+        position: relative;
+        }
+        h5.notifications {
+        background-color: #9dc02e;
+        border-radius: 4px;
+        color: #fff;
+        padding: 5px;
+        width: 70%;
+        }
+        .panel-body {
+        background-color: #ecedf0;
+        }
+        .wrapper {
+        background-color: #eeefef;
+        }
+        i.icon {
+        font-size: 10px;
+        margin-right: 10px;
+        }
+        .scenarioTabs .nav.nav-tabs.tabs-left {
+        margin: 0;
+        }
+        .scenarioTabs .nav.nav-tabs.tabs-left > li {
+        float: left;
+        width: 100%;
+        }
+        .scenarioTabs .tab-content {
+        background: none repeat scroll 0 0 #fff;
+        height: 350px;
+        overflow: auto;
+        padding: 10px;
+        }
+        .scenarioTabs {
+        background-color: #fff;
+        border: 1px solid #777;
+        border-radius: 4px;
+        width: 85%; 
+        }
+        .w70p {
+        width: 70% !important;
+        }
+        .scenarioTabs ul.nav-stacked {
+        background: none repeat scroll 0 0 #eee;
+        border-right: 1px solid #777;
+        margin-bottom: 0;
+        min-height: 840px;
+        }
+        .scenarioTabs li.active {
+            border-right: 1px solid #9dc02e;
+            //height: 16px;
+            //width: 16px;
+            /*border-right: 10px solid #fff; */
+        }
+        .scenarioTabs li.disabled {
+        padding: 10px 15px;
+        }
+        .scenarioTabs ul li.active a,
+        .scenarioTabs ul li.active a:focus {
+        background-color: #2185c5;
+        color: #fff;
+        }
+        .scenarioTabs a {
+        background-color: #e6e8ec;
+        border-top: 1px solid #f2f2f2 !important;
+        color: #000;
+        padding: 15px !important;
+        }
+        .scenarioTabs > div {
+        overflow: hidden;
+        position: relative;
+        }
+        .responsive-alphinat {
+        position: relative;
+        padding-bottom: 53.9%;
+        padding-top: 60px; 
+        /*overflow: hidden;*/
+        }
+        .responsive-alphinat iframe,
+        .responsive-alphinat object,
+        .responsive-alphinat embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /*overflow:hidden;*/
+        }
+        .carousel-caption {
+        background: inherit;
+        bottom: 0;
+        color: #000;
+        float: left;
+        height: auto;
+        left: auto;
+        margin: 0 auto;
+        padding: 1% 12%;
+        position: static;
+        right: auto;
+        width: 100%;
+        }
+        .carousel-inner{
+        top: -15px;
+        }
+        .scenarioTabs .carousel-caption > h4 > a {
+        background: none repeat scroll 0 0 transparent;
+        border: medium none;
+        color: #000;
+        padding: 0 !important;
+        }
+        .scenarioTabs .carousel-caption > p {
+        color: #000;
+        height: 180px;
+        }
+        .carousel-indicators {
+        /*left: 72%;*/
+        list-style: none outside none;
+        margin-left: -30%;
+        padding-left: 0;
+        position: absolute;
+        text-align: center;
+        top: 140px;
+        width: 60%;
+        z-index: 15;
+        }
+        .carousel-indicators li {
+        display: inline-block;
+       /* width: 15px;
+        height: 15px;*/ /* 10px */
+        margin: 1px;
+        text-indent: -999px;
+        cursor: pointer;
+        background-color: #000 \9;
+        background-color: rgba(0,0,0,0);
+        border: 1px solid #9dc02e; /* #fff */
+        border-radius: 10px;
+        }
+        .carousel-indicators .active {
+            background-color: #9dc02e;
+        }
+        a.carousel-control {
+        background: none repeat scroll 0 0 #222222;
+        /*border: 3px solid #ffffff;*/
+        border-radius: 23px;
+        color: #ffffff;
+        font-size: 60px;
+        font-weight: 100;
+        height: 40px;
+        left: 15px;
+        line-height: 30px;
+        margin-top: -20px;
+        opacity: 0.5;
+        padding: 0 !important;
+        position: absolute;
+        text-align: center;
+        /*top: 44px;*/
+        top:80px;
+        width: 40px;
+
+        /*visibility: hidden;*/
+        }
+    </style>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <apex:includeScript value="{!$Resource.html5shiv}"/>
+    <![endif]-->
+    
+    <script>
+        function triggerCarousel(){
+          carCount = -1;
+          $('#carousel ol.carousel-indicators li').each(function(){
+            carCount++;
+            $(this).attr('data-slide-to',carCount);             
+            $('#carousel ol.carousel-indicators li:first-child').addClass('active');           
+          });
+         
+          $('.item:first-child').addClass('active');
+          $('.carousel').carousel({
+            interval: 10000
+          });
+        }
+        function open_win(contracturl, width, height){
+          if (window.location.href.indexOf("StateofWellbeing") > -1) {
+            contracturl = "/StateofWellbeing"+contracturl;
+          }
+          var leftPosition, topPosition;
+          leftPosition = (window.screen.width / 2) - ((width / 2) + 10);
+          topPosition = (window.screen.height / 2) - ((height / 2) + 50);
+          window.open(contracturl, "Window2", "status=no,height=" + height + ",width=" + width + ",resizable=yes,left=" + leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY=" + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no");
+          return false;
+        }
+    </script>
+</apex:component>
