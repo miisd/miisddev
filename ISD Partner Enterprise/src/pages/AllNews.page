@@ -16,6 +16,7 @@
 				  <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 5m ago {!allNews.CreatedBy.Name}</small>
 				</div>
 				<p>@Shetty: This is a test message44</p>
+				<p>@Rameez: Test Message 3</p>
 				<div class="panel-body">
 				  <p><apex:outputfield value="{!allNews.Body__c}"/></p>
 				  <a class="btn btn-xs btn-default pull-left" href="{!allNews.Link__c}">Read more</a>
