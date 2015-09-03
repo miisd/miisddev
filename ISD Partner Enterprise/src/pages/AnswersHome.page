@@ -1,10 +1,1 @@
 <apex:page action="{!URLFOR('/answers/answersHome.apexp')}"/>
-@Attempt2
-@Attempt1
-@Attempt3
-@Attempt4
-@Attempt5
-@Attempt5
-@Attempt6
-@Attempt7
-@Attempt8
