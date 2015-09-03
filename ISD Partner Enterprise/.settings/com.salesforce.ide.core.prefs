@@ -1,4 +1,6 @@
-<<<<<<< HEAD
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'master' of https\://github.com/miisd/miisddev.git
 eclipse.preferences.version=1
 endpointApiVersion=33.0
 endpointEnvironment=Sandbox
@@ -13,19 +15,3 @@ preferToolingDeployment=true
 projectIdentifier=IDE8336198250253927566
 readTimeout=400
 username=sukshetty@isd.com.isddev
-=======
-eclipse.preferences.version=1
-endpointApiVersion=33.0
-endpointEnvironment=Sandbox
-endpointServer=test.salesforce.com
-httpsProtocol=true
-ideVersion=33.0
-keependpoint=false
-metadataFormatVersion=33.0
-namespacePrefix=
-packageName=unpackaged
-preferToolingDeployment=true
-projectIdentifier=IDE8336198250253927566
-readTimeout=400
-username=rpojee@isd.com.isddev
->>>>>>> branch 'master' of https://github.com/miisd/miisddev.git
