@@ -1,3 +1,4 @@
 <apex:page action="{!URLFOR('/answers/answersHome.apexp')}"/>
 @Added1
 @Added2
+@Added3
