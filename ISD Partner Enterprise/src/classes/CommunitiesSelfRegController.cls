@@ -29,7 +29,7 @@ public class CommunitiesSelfRegController {
         String roleEnum = null; // To be filled in by customer.
         String accountId = ''; // To be filled in by customer.
         
-        String userName = email;
+        String userName = email +'.citizen';
 
         User u = new User();
         u.Username = userName;
